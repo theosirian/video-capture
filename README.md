@@ -17,6 +17,13 @@ video-capture = "0.1"
 ```
 
 ```rust
+use video_capture::{
+    camera::CameraManager,
+    device::{Device, OutputDevice},
+    media::media_frame::SharedMediaFrame,
+    variant::Variant,
+};
+
 // Create a default instance of camera manager
 let mut cam_mgr = match CameraManager::default() {
     Ok(cam_mgr) => cam_mgr,

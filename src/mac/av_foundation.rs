@@ -36,9 +36,7 @@ use objc2::{
     runtime::ProtocolObject,
     ClassType, DeclaredClass,
 };
-use objc2_foundation::{
-    NSArray, NSMutableArray, NSMutableDictionary, NSNumber, NSObject, NSObjectProtocol, NSString, NSValue,
-};
+use objc2_foundation::{NSArray, NSMutableArray, NSMutableDictionary, NSNumber, NSObject, NSObjectProtocol, NSString};
 use os_ver::if_greater_than;
 use variant::Variant;
 

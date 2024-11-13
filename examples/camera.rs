@@ -1,9 +1,9 @@
 use video_capture::{
     camera::CameraManager,
     device::{Device, OutputDevice},
+    media::media_frame::SharedMediaFrame,
+    variant::Variant,
 };
-use x_media::media_frame::SharedMediaFrame;
-use x_variant::Variant;
 
 fn main() {
     // Create a default instance of camera manager
