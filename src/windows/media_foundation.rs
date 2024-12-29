@@ -26,7 +26,7 @@ use windows::{
             MFGetStrideForBitmapInfoHeader, MFMediaType_Video, MFNominalRange, MFNominalRange_Normal,
             MFNominalRange_Wide, MFShutdown, MFStartup, MFVideoFormat_ARGB32, MFVideoFormat_I420, MFVideoFormat_MJPG,
             MFVideoFormat_NV12, MFVideoFormat_RGB24, MFVideoFormat_UYVY, MFVideoFormat_YUY2, MFVideoFormat_YV12,
-            MFSTARTUP_LITE, MF_API_VERSION, MF_DEVSOURCE_ATTRIBUTE_FRIENDLY_NAME, MF_DEVSOURCE_ATTRIBUTE_SOURCE_TYPE,
+            MFSTARTUP_LITE, MF_VERSION, MF_DEVSOURCE_ATTRIBUTE_FRIENDLY_NAME, MF_DEVSOURCE_ATTRIBUTE_SOURCE_TYPE,
             MF_DEVSOURCE_ATTRIBUTE_SOURCE_TYPE_VIDCAP_GUID, MF_DEVSOURCE_ATTRIBUTE_SOURCE_TYPE_VIDCAP_SYMBOLIC_LINK,
             MF_MT_DEFAULT_STRIDE, MF_MT_FRAME_RATE, MF_MT_FRAME_SIZE, MF_MT_MAJOR_TYPE, MF_MT_SUBTYPE,
             MF_MT_VIDEO_NOMINAL_RANGE, MF_READWRITE_DISABLE_CONVERTERS, MF_SOURCE_READER_ASYNC_CALLBACK,
@@ -60,7 +60,7 @@ impl DeviceManager for MediaFoundationDeviceManager {
             CoInitializeEx(None, COINIT_APARTMENTTHREADED | COINIT_DISABLE_OLE1DDE)
                 .ok()
                 .map_err(|err| BaseError::InitializationFailed(err.message()))?;
-            MFStartup(MF_API_VERSION, MFSTARTUP_LITE).map_err(|err| BaseError::InitializationFailed(err.message()))?;
+            MFStartup(MF_VERSION, MFSTARTUP_LITE).map_err(|err| BaseError::InitializationFailed(err.message()))?;
         }
         Ok(Self {
             devices: None,
