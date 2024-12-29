@@ -4,8 +4,8 @@ use std::{
     ptr::null_mut,
     slice::from_raw_parts,
     sync::{
-        atomic::{AtomicBool, Ordering::SeqCst},
         Arc, Condvar, Mutex, Weak,
+        atomic::{AtomicBool, Ordering::SeqCst},
     },
     time::Duration,
 };
@@ -17,25 +17,25 @@ use media::{
 };
 use variant::Variant;
 use windows::{
-    core::{implement, AsImpl, Interface, GUID, PWSTR},
     Win32::{
         Media::MediaFoundation::{
             IMF2DBuffer, IMF2DBuffer2, IMFActivate, IMFAttributes, IMFMediaBuffer, IMFMediaEvent, IMFMediaSource,
             IMFMediaType, IMFSample, IMFSourceReader, IMFSourceReaderCallback, IMFSourceReaderCallback_Impl,
-            MF2DBuffer_LockFlags_Read, MFCreateAttributes, MFCreateSourceReaderFromMediaSource, MFEnumDeviceSources,
-            MFGetStrideForBitmapInfoHeader, MFMediaType_Video, MFNominalRange, MFNominalRange_Normal,
-            MFNominalRange_Wide, MFShutdown, MFStartup, MFVideoFormat_ARGB32, MFVideoFormat_I420, MFVideoFormat_MJPG,
-            MFVideoFormat_NV12, MFVideoFormat_RGB24, MFVideoFormat_UYVY, MFVideoFormat_YUY2, MFVideoFormat_YV12,
-            MFSTARTUP_LITE, MF_VERSION, MF_DEVSOURCE_ATTRIBUTE_FRIENDLY_NAME, MF_DEVSOURCE_ATTRIBUTE_SOURCE_TYPE,
+            MF_DEVSOURCE_ATTRIBUTE_FRIENDLY_NAME, MF_DEVSOURCE_ATTRIBUTE_SOURCE_TYPE,
             MF_DEVSOURCE_ATTRIBUTE_SOURCE_TYPE_VIDCAP_GUID, MF_DEVSOURCE_ATTRIBUTE_SOURCE_TYPE_VIDCAP_SYMBOLIC_LINK,
             MF_MT_DEFAULT_STRIDE, MF_MT_FRAME_RATE, MF_MT_FRAME_SIZE, MF_MT_MAJOR_TYPE, MF_MT_SUBTYPE,
             MF_MT_VIDEO_NOMINAL_RANGE, MF_READWRITE_DISABLE_CONVERTERS, MF_SOURCE_READER_ASYNC_CALLBACK,
-            MF_SOURCE_READER_FIRST_VIDEO_STREAM,
+            MF_SOURCE_READER_FIRST_VIDEO_STREAM, MF_VERSION, MF2DBuffer_LockFlags_Read, MFCreateAttributes,
+            MFCreateSourceReaderFromMediaSource, MFEnumDeviceSources, MFGetStrideForBitmapInfoHeader,
+            MFMediaType_Video, MFNominalRange, MFNominalRange_Normal, MFNominalRange_Wide, MFSTARTUP_LITE, MFShutdown,
+            MFStartup, MFVideoFormat_ARGB32, MFVideoFormat_I420, MFVideoFormat_MJPG, MFVideoFormat_NV12,
+            MFVideoFormat_RGB24, MFVideoFormat_UYVY, MFVideoFormat_YUY2, MFVideoFormat_YV12,
         },
         System::Com::{
-            CoInitializeEx, CoTaskMemFree, CoUninitialize, COINIT_APARTMENTTHREADED, COINIT_DISABLE_OLE1DDE,
+            COINIT_APARTMENTTHREADED, COINIT_DISABLE_OLE1DDE, CoInitializeEx, CoTaskMemFree, CoUninitialize,
         },
     },
+    core::{AsImpl, GUID, Interface, PWSTR, implement},
 };
 
 use crate::{
