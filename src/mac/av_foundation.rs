@@ -5,7 +5,7 @@ use av_foundation::capture_device::AVCaptureDeviceTypeExternalUnknown;
 use av_foundation::{
     capture_device::{
         AVCaptureDevice, AVCaptureDeviceDiscoverySession, AVCaptureDeviceFormat, AVCaptureDevicePositionUnspecified,
-        AVCaptureDeviceTypeBuiltInWideAngleCamera, AVCaptureDeviceTypeExternal,
+        AVCaptureDeviceTypeBuiltInWideAngleCamera, AVCaptureDeviceTypeContinuityCamera, AVCaptureDeviceTypeExternal,
     },
     capture_input::AVCaptureDeviceInput,
     capture_output_base::AVCaptureOutput,
@@ -22,8 +22,8 @@ use core_media::{
     time::CMTime,
 };
 use core_video::pixel_buffer::{
-    kCVPixelFormatType_420YpCbCr8BiPlanarVideoRange, kCVPixelFormatType_420YpCbCr8Planar,
-    kCVPixelFormatType_422YpCbCr8, kCVPixelFormatType_422YpCbCr8_yuvs, CVPixelBuffer, CVPixelBufferKeys,
+    CVPixelBuffer, CVPixelBufferKeys, kCVPixelFormatType_420YpCbCr8BiPlanarVideoRange,
+    kCVPixelFormatType_420YpCbCr8Planar, kCVPixelFormatType_422YpCbCr8, kCVPixelFormatType_422YpCbCr8_yuvs,
 };
 use dispatch2::Queue;
 use media::{
@@ -31,10 +31,9 @@ use media::{
     video::{ColorRange, PixelFormat, VideoFormat},
 };
 use objc2::{
-    declare_class, extern_methods, msg_send_id, mutability,
+    ClassType, DeclaredClass, declare_class, extern_methods, msg_send_id, mutability,
     rc::{Allocated, Id, Retained},
     runtime::ProtocolObject,
-    ClassType, DeclaredClass,
 };
 use objc2_foundation::{NSArray, NSMutableArray, NSMutableDictionary, NSNumber, NSObject, NSObjectProtocol, NSString};
 use os_ver::if_greater_than;
@@ -118,6 +117,7 @@ impl AVFoundationCaptureDeviceManager {
                         device_types.addObject(AVCaptureDeviceTypeBuiltInWideAngleCamera);
                         if_greater_than! {(14) => {
                             device_types.addObject(AVCaptureDeviceTypeExternal);
+                            // device_types.addObject(AVCaptureDeviceTypeContinuityCamera);
                         } else {
                             device_types.addObject(AVCaptureDeviceTypeExternalUnknown);
                         }};

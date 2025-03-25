@@ -1,6 +1,6 @@
 use thiserror::Error;
 
-pub(crate) use crate::base::error::BaseError;
+pub use crate::base::error::BaseError;
 
 #[derive(Error, Debug, Clone)]
 pub enum DeviceError {
